@@ -42,11 +42,11 @@ def search(request):
 		response=''
 		if searchCategory == 'cuisines':
 			response = p.search(q="bangalore")
+			print(response)
 		if searchCategory == 'restaurantType':
 			response = p.search(q="bangalore", establishment_type=searchKeyWord)
 		if searchCategory == 'restaurantCategory':
 			response = p.search(q="bangalore", category=searchKeyWord)
-		print('Type of response = '+type(response['restaurants']))
 	except Exception as e:
 		print(e)
 		print('It failed')
