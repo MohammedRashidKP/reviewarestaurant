@@ -40,7 +40,7 @@ def search(request):
 		searchKeyWord = request.GET.get('searchKeyWord','')
 		response=''
 		if searchCategory == 'cuisines':
-			response = p.search(q="bangalore", cuisines=searchKeyWord)
+			response = p.search(q="bangalore")
 			print('Yes, it reached here'+searchKeyWord)
 		if searchCategory == 'restaurantType':
 			response = p.search(q="bangalore", establishment_type=searchKeyWord)
@@ -50,6 +50,7 @@ def search(request):
 		print(e)
 		print('It failed')
 	try:
+		print('Its trying')
 		for num, restaurant in enumerate(response['restaurants']):
 			print('Inside FOr loop')
 			number= num+1,
