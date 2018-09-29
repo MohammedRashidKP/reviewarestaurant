@@ -50,8 +50,9 @@ def search(request):
 			print('inside cuisines')
 			params = {'q':'bangalore'} 
 			responseDict = requests.get(url=search_url, data = {'q':'Chennai'}, headers=headers)
-			response = responseDict.json()
-			print(response)
+			#response = responseDict.json()
+			#print(response)
+			response = p.search()
 		if searchCategory == 'restaurantType':
 			response = p.search(q="bangalore", establishment_type=searchKeyWord)
 			print('inside type')
