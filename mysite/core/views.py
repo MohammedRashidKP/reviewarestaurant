@@ -41,6 +41,7 @@ def search(request):
 		response=''
 		if searchCategory == 'cuisines':
 			response = p.search(q="bangalore", cuisines=searchKeyWord)
+			print('Yes, it reached here')
 		if searchCategory == 'restaurantType':
 			response = p.search(q="bangalore", establishment_type=searchKeyWord)
 		if searchCategory == 'restaurantCategory':
