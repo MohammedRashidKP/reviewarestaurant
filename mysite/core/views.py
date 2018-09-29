@@ -35,7 +35,7 @@ def signup(request):
 def search(request):
 	p = Pyzomato('ca5cbda00917434b4886bcf7fcc01b97')
 	list = []
-	print('Type of p= '+type(p))
+	print(p)
 	try:
 		searchCategory = request.GET.get('searchCategory','')
 		searchKeyWord = request.GET.get('searchKeyWord','')
