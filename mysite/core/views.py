@@ -34,16 +34,22 @@ def signup(request):
 @login_required
 def search(request):
 	p = Pyzomato('ca5cbda00917434b4886bcf7fcc01b97')
+	base_url='https://developers.zomato.com/api/v2.1/'
+	headers = {
+                "User-agent": "curl/7.43.0",
+                "Content-type": "application/json",
+                "X-Zomato-API-Key": 'ca5cbda00917434b4886bcf7fcc01b97'
+				}
+	search_url = base_url + 'search'
+	response = requests.get(url=search_url, headers=headers)
+	print(response)
 	list = []
-	print(p)
 	try:
 		searchCategory = request.GET.get('searchCategory','')
 		searchKeyWord = request.GET.get('searchKeyWord','')
 		response=''
 		if searchCategory == 'cuisines':
-			#response = p.search(q="bangalore")
-			respone = p.getCategories()
-			print(response)
+			response = p.search(q="bangalore")
 		if searchCategory == 'restaurantType':
 			response = p.search(q="bangalore", establishment_type=searchKeyWord)
 		if searchCategory == 'restaurantCategory':
