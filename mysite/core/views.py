@@ -41,16 +41,15 @@ def search(request):
                 "X-Zomato-API-Key": 'ca5cbda00917434b4886bcf7fcc01b97'
 				}
 	search_url = base_url + 'search'
-	response = requests.get(url=search_url, headers=headers)
-	print('Printing response below')
-	print(response.json())
 	list = []
 	try:
 		searchCategory = request.GET.get('searchCategory','')
 		searchKeyWord = request.GET.get('searchKeyWord','')
 		response=''
 		if searchCategory == 'cuisines':
-			response = p.search(q="bangalore")
+			option = (q="bangalore")
+			responseDict = requests.get(url=search_url, headers=headers)
+			response = responseDict.json()
 		if searchCategory == 'restaurantType':
 			response = p.search(q="bangalore", establishment_type=searchKeyWord)
 		if searchCategory == 'restaurantCategory':
