@@ -39,16 +39,14 @@ def search(request):
 		searchCategory = request.GET.get('searchCategory','')
 		searchKeyWord = request.GET.get('searchKeyWord','')
 		response=''
-		print(searchKeyWord)
 		if searchCategory == 'cuisines':
 			response = p.search(q="bangalore", cuisines=searchKeyWord)
 		if searchCategory == 'restaurantType':
 			response = p.search(q="bangalore", establishment_type=searchKeyWord)
 		if searchCategory == 'restaurantCategory':
 			response = p.search(q="bangalore", category=searchKeyWord)
-		print('response = '+response)
-	except:
-		print("Error while calling api")
+	except Exception as e:
+		print(e)
 	try:
 		for num, restaurant in enumerate(response['restaurants']):
 			number= num+1,
@@ -62,11 +60,10 @@ def search(request):
 			res_id=restaurant['restaurant']['id']
 			dictlist = [dict() for x in range(9)]
 			dictlist={'number':number, 'name':name, 'url':url, 'cuisines':cuisines, 'rating':rating, 'icon':icon, 'price':price, 'res_id':res_id }
-			print('dictList='+dictlist)
 			list.append(dictlist)
 	except Exception as e:
 		print(e)
-		return render(request, 'home.html', {'context': list})
+	return render(request, 'home.html', {'context': list})
 	
 @login_required
 def showRestaurantDetails(request, value):
