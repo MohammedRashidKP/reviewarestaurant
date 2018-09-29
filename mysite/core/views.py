@@ -35,17 +35,18 @@ def signup(request):
 def search(request):
 	p = Pyzomato('ca5cbda00917434b4886bcf7fcc01b97')
 	list = []
+	print('Type of p= '+type(p))
 	try:
 		searchCategory = request.GET.get('searchCategory','')
 		searchKeyWord = request.GET.get('searchKeyWord','')
 		response=''
 		if searchCategory == 'cuisines':
 			response = p.search(q="bangalore")
-			print('Yes, it reached here'+searchKeyWord)
 		if searchCategory == 'restaurantType':
 			response = p.search(q="bangalore", establishment_type=searchKeyWord)
 		if searchCategory == 'restaurantCategory':
 			response = p.search(q="bangalore", category=searchKeyWord)
+		print('Type of response = '+type(response['restaurants']))
 	except Exception as e:
 		print(e)
 		print('It failed')
