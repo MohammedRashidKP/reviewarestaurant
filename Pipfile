@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+appdirs = "==1.4.0"
+django = "==1.10.5"
+pyparsing = "==2.1.10"
+six = "==1.10.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"

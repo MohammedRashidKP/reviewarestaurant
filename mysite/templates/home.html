@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Welcome, {{ user.username }}!</h2>
+	
+ <div class="button_box2">
+<form class="form-wrapper-2 cf" action = "{% url 'search'%}">
+<select name = "searchCategory">
+  <option value="cuisines">Cuisines</option>
+  <option value="restaurantType">Restaurant Type</option>
+  <option value="restaurantCategory">Restaurant Category</option>
+</select> 
+<input type="text" name = "searchKeyWord" placeholder="Search here..." required>
+<button type="submit" onClick="location.href={% url 'search'%}">Search</button>
+</form>
+</div>
+
+<div>
+    {% for item in context %}
+    <div class="row">
+  <div class="column" style="background-color:#aaa;">
+	<a href=/restview/{{item.res_id}} style="font-size:40px">{{ item.name	}}</a>
+	<p>Cuisines: {{ item.cuisines		}}</p>
+	<p>Rating: {{ item.rating		}}</p>
+    <p>Average cost for two: {{ item.price		}}</p>
+	<a href={{ item.url		}}>Open in Zomato</a>
+	<img src={{ item.icon		}} style="width:50px;height:60px;">
+	</div>
+  </div>
+  </div>
+    {% endfor %}
+	</div>
+{% endblock %}
