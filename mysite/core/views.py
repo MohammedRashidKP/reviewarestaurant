@@ -49,7 +49,7 @@ def search(request):
 		if searchCategory == 'cuisines':
 			print('inside cuisines')
 			params = {'q':'bangalore'} 
-			responseDict = requests.get(url=search_url, data = {'q':'bangalore'}, headers=headers)
+			responseDict = requests.get(url=search_url, data = {'q':'Chennai'}, headers=headers)
 			response = responseDict.json()
 			print(response)
 		if searchCategory == 'restaurantType':
