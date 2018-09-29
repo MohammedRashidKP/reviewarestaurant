@@ -15,6 +15,7 @@ pyzomato = "==0.5"
 certifi = "*"
 chardet = "*"
 idna = "*"
+urllib3 = "*"
 
 [dev-packages]
 
