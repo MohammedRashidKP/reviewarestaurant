@@ -34,41 +34,23 @@ def signup(request):
 @login_required
 def search(request):
 	p = Pyzomato('ca5cbda00917434b4886bcf7fcc01b97')
-	base_url='https://developers.zomato.com/api/v2.1/'
-	headers = {
-                "User-agent": "curl/7.43.0",
-                "Content-type": "application/json",
-                "X-Zomato-API-Key": 'ca5cbda00917434b4886bcf7fcc01b97'
-				}
-	search_url = base_url + 'search'
 	list = []
 	try:
 		searchCategory = request.GET.get('searchCategory','')
 		searchKeyWord = request.GET.get('searchKeyWord','')
 		response=''
 		if searchCategory == 'cuisines':
-			print('inside cuisines')
-			params = {'q':'bangalore'} 
-			responseDict = requests.get(url=search_url, data = {'q':'Chennai'}, headers=headers)
-			#response = responseDict.json()
-			#print(response)
 			response = p.search()
 		if searchCategory == 'restaurantType':
-			response = p.search(q="bangalore", establishment_type=searchKeyWord)
-			print('inside type')
+			response = p.search()
 		if searchCategory == 'restaurantCategory':
-			print('inside category')
-			response = p.search(q="bangalore", category=searchKeyWord)
+			response = p.search()
 	except Exception as e:
 		print(e)
-		print('It failed')
 	try:
-		print('Its trying')
 		for num, restaurant in enumerate(response['restaurants']):
-			print('Inside FOr loop')
 			number= num+1,
 			name=restaurant['restaurant']['name']
-			print("name of Rest: "+name)
 			name = name.format()
 			url=restaurant['restaurant']['url']
 			cuisines=restaurant['restaurant']['cuisines']
