@@ -41,7 +41,7 @@ def search(request):
 		response=''
 		if searchCategory == 'cuisines':
 			response = p.search(q="bangalore", cuisines=searchKeyWord)
-			print('Yes, it reached here')
+			print('Yes, it reached here'+searchKeyWord)
 		if searchCategory == 'restaurantType':
 			response = p.search(q="bangalore", establishment_type=searchKeyWord)
 		if searchCategory == 'restaurantCategory':
@@ -52,6 +52,7 @@ def search(request):
 		for num, restaurant in enumerate(response['restaurants']):
 			number= num+1,
 			name=restaurant['restaurant']['name']
+			print("name of Rest: "+name)
 			name = name.format()
 			url=restaurant['restaurant']['url']
 			cuisines=restaurant['restaurant']['cuisines']
