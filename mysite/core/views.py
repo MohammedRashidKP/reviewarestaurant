@@ -46,9 +46,8 @@ def search(request):
 		searchCategory = request.GET.get('searchCategory','')
 		searchKeyWord = request.GET.get('searchKeyWord','')
 		response=''
-		if searchCategory == 'cuisines':
-			option = (q="bangalore")
-			responseDict = requests.get(url=search_url, headers=headers)
+		if searchCategory == 'cuisines': 
+			responseDict = requests.get(url=search_url, q="bangalore", headers=headers)
 			response = responseDict.json()
 		if searchCategory == 'restaurantType':
 			response = p.search(q="bangalore", establishment_type=searchKeyWord)
