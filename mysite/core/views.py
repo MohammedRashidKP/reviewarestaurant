@@ -46,13 +46,17 @@ def search(request):
 		searchCategory = request.GET.get('searchCategory','')
 		searchKeyWord = request.GET.get('searchKeyWord','')
 		response=''
-		if searchCategory == 'cuisines': 
+		if searchCategory == 'cuisines':
+			print('inside cuisines')
 			params = {'q':'bangalore'} 
 			responseDict = requests.get(url=search_url, params = params, headers=headers)
 			response = responseDict.json()
+			print(response)
 		if searchCategory == 'restaurantType':
 			response = p.search(q="bangalore", establishment_type=searchKeyWord)
+			print('inside type')
 		if searchCategory == 'restaurantCategory':
+			print('inside category')
 			response = p.search(q="bangalore", category=searchKeyWord)
 	except Exception as e:
 		print(e)
