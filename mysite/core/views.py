@@ -43,7 +43,7 @@ def search(request):
 	search_url = base_url + 'search'
 	response = requests.get(url=search_url, headers=headers)
 	print('Printing response below')
-	print(response)
+	print(response.json())
 	list = []
 	try:
 		searchCategory = request.GET.get('searchCategory','')
