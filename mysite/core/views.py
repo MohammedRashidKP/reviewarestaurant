@@ -42,6 +42,7 @@ def search(request):
 				}
 	search_url = base_url + 'search'
 	response = requests.get(url=search_url, headers=headers)
+	print('Printing response below')
 	print(response)
 	list = []
 	try:
