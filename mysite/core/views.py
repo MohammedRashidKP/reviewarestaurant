@@ -95,7 +95,7 @@ def submit(request):
 	id= request.session['0']
 	r = RestaurantReview(user=user, restaurantId=id, review=review,rating=rating)
 	r.save()
-	all_enties = Restaurant.objects.all().filter(restaurantId=id)
+	all_enties = RestaurantReview.objects.all().filter(restaurantId=id)
 	reviewList = []
 	for p in all_enties:
 		reviewList.append(p.review)
