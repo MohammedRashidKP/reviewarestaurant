@@ -48,8 +48,10 @@ def search(request):
 			response = p.search(q="bangalore", category=searchKeyWord)
 	except Exception as e:
 		print(e)
+		print('It failed')
 	try:
 		for num, restaurant in enumerate(response['restaurants']):
+			print('Inside FOr loop')
 			number= num+1,
 			name=restaurant['restaurant']['name']
 			print("name of Rest: "+name)
@@ -65,6 +67,7 @@ def search(request):
 			list.append(dictlist)
 	except Exception as e:
 		print(e)
+		print('failed in for loop')
 	return render(request, 'home.html', {'context': list})
 	
 @login_required
