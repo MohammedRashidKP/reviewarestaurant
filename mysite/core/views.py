@@ -9,7 +9,6 @@ from django.http import HttpResponse
 from pyzomato import Pyzomato
 import json
 from .models import RestaurantReview
-import math
 
 @login_required
 def home(request):
