@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.db import models
 
 class RestaurantReview(models.Model):
+	class Meta:
+		unique_together = (('user', 'restaurantId'),)
 	user = models.CharField(max_length=100)
 	restaurantId = models.CharField(max_length=100)
 	review = models.TextField()

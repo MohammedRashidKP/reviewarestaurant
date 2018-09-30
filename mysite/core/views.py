@@ -48,6 +48,7 @@ def search(request):
 	except Exception as e:
 		print(e)
 	try:
+		RestaurantReview.objects.all().delete()
 		for num, restaurant in enumerate(response['restaurants']):
 			number= num+1,
 			name=restaurant['restaurant']['name']
@@ -84,12 +85,16 @@ def showRestaurantDetails(request, value):
 	menu=restDetails['menu_url']
 	details = [dict() for x in range(12)]
 	request.session[0]=value
+	request.session[1]=details
 	all_enties = RestaurantReview.objects.all().filter(restaurantId=value)
 	reviewList = []
 	for p in all_enties:
-		reviewList.append(p.review)
-	details={'id':id,'name':name, 'url':url, 'address':address, 'cuisines':cuisines, 'cuisines':cuisines, 'average_cost_for_two':average_cost_for_two, 'thumbnail':thumbnail, 'rating':rating, 'popular_opinion':popular_opinion,'votes':votes,'photos':photos,'menu':menu}
-	
+		reviewElement = [dict() for x in range(9)]
+		review = p.review
+		rating = p.rating
+		userName = p.user
+		reviewElement={'review':review,'rating':rating, 'userName':userName}
+		reviewList.append(reviewElement)
 	return render(request, 'restaurantview.html', {'restdetails':details, 'reviewsAndRatings':reviewList})
 	
 @login_required
@@ -98,11 +103,18 @@ def submit(request):
 	rating = request.GET.get('rating')
 	user = request.user
 	id= request.session['0']
-	r = RestaurantReview(user=user, restaurantId=id, review=review,rating=rating)
-	r.save()
+	obj, created = RestaurantReview.objects.update_or_create(
+	user=user, restaurantId=id, review=review,rating=rating)
+	#r = RestaurantReview(user=user, restaurantId=id, review=review,rating=rating)
+	#r.save()
 	all_enties = RestaurantReview.objects.all().filter(restaurantId=id)
 	reviewList = []
+	details=request.session['1']
 	for p in all_enties:
-		reviewList.append(p.review)
-	print(reviewList)	
-	return render(request, 'restaurantview.html', {'reviewsAndRatings':reviewList})
+		reviewElement = [dict() for x in range(9)]
+		review = p.review
+		rating = p.rating
+		userName = p.user
+		reviewElement={'review':review,'rating':rating, 'userName':userName}
+		reviewList.append(reviewElement)
+	return render(request, 'restaurantview.html', {'restdetails':details,'reviewsAndRatings':reviewList})
