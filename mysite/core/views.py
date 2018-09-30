@@ -40,13 +40,26 @@ def search(request):
 		searchKeyWord = request.GET.get('searchKeyWord','')
 		response=''
 		if searchCategory == 'cuisines':
+			cuisine_id = ''
 			cusineResponse = p.getCuisines(city_id = '4')
-			print('cusineResponse')
-			response = p.search(entity_type="city", entity_id='4')
+			for num, cuisine in enumerate(cusineResponse['cuisines']):
+				if cuisine['cuisine']['cuisine_name'] == searchKeyWord:
+					cuisine_id = cuisine['cuisine']['cuisine_id']
+			response = p.search(entity_type="city", entity_id='4',cuisines=cuisine_id)
 		if searchCategory == 'restaurantType':
-			response = p.search(entity_type="city", entity_id='4')
+			restaurantTypeValue = ''
+			restaurantTypeResponse = p.getEstablishments(city_id = '4')
+			for num, establishment in enumerate(restaurantTypeResponse['establishments']):
+				if establishment['establishment']['name'] == searchKeyWord:
+					restaurantTypeValue = establishment['establishment']['id']
+			response = p.search(entity_type="city", entity_id='4', establishment_type=restaurantTypeValue)
 		if searchCategory == 'restaurantCategory':
-			response = p.search(entity_type="city", entity_id='4')
+			category_id = ''
+			category_response = p.getCategories()
+			for num, category in enumerate(category_response['categories']):
+				if category['categories']['name'] == searchKeyWord:
+					category_id = category['categories']['id']
+			response = p.search(entity_type="city", entity_id='4', category=category_id)
 	except Exception as e:
 		print(e)
 	try:
