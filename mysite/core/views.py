@@ -70,7 +70,6 @@ def search(request):
 def showRestaurantDetails(request, value):
 	p = Pyzomato('ca5cbda00917434b4886bcf7fcc01b97')
 	restDetails = p.getRestaurantDetails(value)
-	print(restDetails)
 	id = value
 	name=restDetails["name"]
 	url=restDetails["url"]
@@ -86,10 +85,8 @@ def showRestaurantDetails(request, value):
 	details = [dict() for x in range(12)]
 	details = {'id':id, 'name':name, 'name':name, 'address':address, 'average_cost_for_two':average_cost_for_two, 'thumbnail':thumbnail, 'rating':rating, 'popular_opinion':popular_opinion, 'photos':photos, 'menu':menu }
 	request.session[0]=value
-	#request.session[1]=details
-	print("Before DB")
+	request.session[1]=details
 	all_enties = RestaurantReview.objects.all().filter(restaurantId=value)
-	print("After DB")
 	reviewList = []
 	for p in all_enties:
 		reviewElement = [dict() for x in range(9)]
@@ -102,17 +99,21 @@ def showRestaurantDetails(request, value):
 	
 @login_required
 def submit(request):
+	error = ''
+	details=request.session['1']
+	reviewList=''
 	review = request.GET.get('review')
 	rating = request.GET.get('rating')
 	user = request.user
 	id= request.session['0']
-	obj, created = RestaurantReview.objects.update_or_create(restaurantId=id, defaults={
-	user=user, restaurantId=id, review=review,rating=rating})
-	#r = RestaurantReview(user=user, restaurantId=id, review=review,rating=rating)
-	#r.save()
+	if not review:
+		error = 'Please write a review'
+	elif not rating:
+		error = 'Please give a rating'
+	else:	
+		obj, created = RestaurantReview.objects.update_or_create(user=user,restaurantId=id, defaults = {'review':review,'rating':rating})
 	all_enties = RestaurantReview.objects.all().filter(restaurantId=id)
 	reviewList = []
-	#details=request.session['1']
 	for p in all_enties:
 		reviewElement = [dict() for x in range(9)]
 		review = p.review
@@ -120,4 +121,4 @@ def submit(request):
 		userName = p.user
 		reviewElement={'review':review,'rating':rating, 'userName':userName}
 		reviewList.append(reviewElement)
-	return render(request, 'restaurantview.html', {'reviewsAndRatings':reviewList})
+	return render(request, 'restaurantview.html', {'error':error, 'restdetails':details,'reviewsAndRatings':reviewList})

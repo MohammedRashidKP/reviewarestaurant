@@ -171,8 +171,7 @@ html, body {
 <form action = "{% url 'submit'%}">
   </br>
   <div style="margin-left:65px">	
-    <textarea rows="4" cols="50" name="review">
-  </textarea>
+    <textarea rows="4" cols="50" name="review" placeholder="What do you think about us..."></textarea>
   </br>	
   <fieldset class="rating" name="rating">
     <legend>Please rate:</legend>
@@ -182,6 +181,7 @@ html, body {
     <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
     <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
 </fieldset>
+<p style="color: red">{{ error }}</p>
 </div>
 <button type="submit" onClick="location.href={% url 'submit'%}">Submit</button>
 </form>
