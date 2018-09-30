@@ -85,7 +85,6 @@ def search(request):
 def showRestaurantDetails(request, value):
 	p = Pyzomato('ca5cbda00917434b4886bcf7fcc01b97')
 	restDetails = p.getRestaurantDetails(value)
-	print(restDetails)
 	id = value
 	name=restDetails["name"]
 	url=restDetails["url"]

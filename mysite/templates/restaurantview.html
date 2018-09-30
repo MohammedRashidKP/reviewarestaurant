@@ -394,7 +394,7 @@ body{
 								</div>
 								<div class="tab-pane fade" id="reviews">
 									<br>
-									<form method = "POST" class="well padding-bottom-10" action = "{% url 'submit'%}">
+									<form action = "{% url 'submit'%}">
 										<textarea rows="2" class="form-control" placeholder="Write a review" name="review"> </textarea>
 										<div class="margin-top-10">
 											<button type="submit" class="btn btn-sm btn-primary pull-right" onClick="location.href={% url 'submit'%}">
