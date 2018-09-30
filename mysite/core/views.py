@@ -35,9 +35,12 @@ def signup(request):
 def search(request):
 	p = Pyzomato('ca5cbda00917434b4886bcf7fcc01b97')
 	list = []
+	print('Search url working')
 	try:
 		searchCategory = request.GET.get('searchCategory','')
 		searchKeyWord = request.GET.get('searchKeyWord','')
+		print(searchCategory)
+		print(searchKeyWord)
 		response=''
 		if searchCategory == 'cuisines':
 			cuisine_id = ''
@@ -59,7 +62,7 @@ def search(request):
 			for num, category in enumerate(category_response['categories']):
 				if category['categories']['name'] == searchKeyWord:
 					category_id = category['categories']['id']
-					print(category_id)
+					print(	)
 			response = p.search(entity_type="city", entity_id='4', category=category_id)
 	except Exception as e:
 		print(e)

@@ -1,33 +1,334 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+body {
+    font-family: 'Roboto';font-size: 16px;
+}
+/*footer css */
 
-{% block content %}
-  <h2>Welcome, {{ user.username }}!</h2>
-	
- <div class="button_box2">
-<form class="form-wrapper-2 cf" action = "{% url 'search'%}">
-<select name = "searchCategory">
-  <option value="cuisines">Cuisines</option>
-  <option value="restaurantType">Restaurant Type</option>
-  <option value="restaurantCategory">Restaurant Category</option>
-</select> 
-<input type="text" name = "searchKeyWord" placeholder="Search here..." required>
-<button type="submit" onClick="location.href={% url 'search'%}">Search</button>
-</form>
+.footer {
+    position: relative;
+    border-top: 5px solid #980606;
+    background-size: cover;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    color:white;
+}
+.footer-pad {
+    padding: 75px 0 65px;
+}
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(71, 32, 29);
+}
+.footer.bg-style .footer-upper {
+    padding: 75px 0 65px;
+}
+.about-box .social-links a {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: normal;
+    color: #fff;
+    line-height: 38px;
+    margin-right: 1px;
+    border: 1px solid #fff;
+    width: 38px;
+    height: 38px;
+}
+h3.title {
+    margin-bottom: 30px;
+    position: relative;
+    font-weight: 500;
+    color: #fff;
+}
+.footer-widget.footer-links ul li a:hover {
+    color: #fff;
+}
+.footer.bg-style .footer-widget.footer-links ul li a {
+    display: block;
+    font-size: 14px;
+    color: #fff;
+    line-height: 24px;
+    padding-left: 26px;
+    position: relative;
+    font-weight: 400;
+    
+   
+}
+.footer p {
+     font-weight: 400;
+    font-size: 14px;
+    color: #fff;
+    line-height: 27px;
+}
+
+
+/*footer css ends here */
+
+
+.dropdown-menu > li > a:hover {
+color: #fff;
+text-decoration: none;
+background-color: #cd0e00;
+}
+
+.banner {
+     background-image: url("https://images.pexels.com/photos/51325/industry-sunset-port-facility-mood-51325.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+    background-color: #f4511e; /* Orange */
+    color: #ffffff;
+}
+.jumbotron {
+   background-color: rgba(175, 43, 45, 0);
+    color: #ffffff;
+   padding:140px; 
+}
+
+/* NAVIGATION */
+/* NAVIGATION */
+
+
+.navbar-default {
+  background-color: #e22300;
+  border-color: #cd0e00;
+}
+.navbar-default .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ffffff;
+}
+.navbar-default .navbar-text {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ffffff;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #ffffff;
+  background-color: #cd0e00;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #ffffff;
+  background-color: #cd0e00;
+}
+.navbar-default .navbar-toggle {
+  border-color: #cd0e00;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #cd0e00;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ecf0f1;
+}
+.navbar-default .navbar-link {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-link:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ecf0f1;
+    
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffffff;
+    
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffffff;
+    background-color: #cd0e00;
+  }
+  .param {
+    margin-bottom: 7px;
+    line-height: 1.4;
+}
+.param-inline dt {
+    display: inline-block;
+}
+.param dt {
+    margin: 0;
+    margin-right: 7px;
+    font-weight: 600;
+}
+.param-inline dd {
+    vertical-align: baseline;
+    display: inline-block;
+}
+
+.param dd {
+    margin: 0;
+    vertical-align: baseline;
+} 
+
+.shopping-cart-wrap .price {
+    color: #007bff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 5px;
+    display: block;
+}
+var {
+    font-style: normal;
+}
+
+.media img {
+    margin-right: 1rem;
+}
+.img-sm {
+    width: 90px;
+    max-height: 75px;
+    object-fit: cover;
+}
+</style>
+  </head>
+  <body>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="#">review-A-restaurant</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-collapse -->
+  </nav>
+<div class="container-fluid banner"> 
+    <div class="container banner">
+     <div class="jumbotron text-center">
+  <h1>Review A Restaurant</h1>
+  <p>Tell us what you think about these restaurants</p>
+     <form class="form-inline" action = "{% url 'search'%}">
+            <li class="divider"></li>
+ <div class="form-group ">
+    
+      <select class="select form-control" id="select" name = "searchCategory">
+       <option value="cuisines">
+        Cuisine
+       </option>
+       <option value="restaurantType">
+        Restaurant Type
+       </option>
+       <option value="restaurantCategory">
+        Restaurant Category
+       </option>
+      </select>
+     </div>
+  <div class="form-group ">
+      
+      <input type="text" name = "searchKeyWord" placeholder="Search here..." style="height:33px;font-size:14pt;"> </input>
+     </div>
+
+  <button type="submit" class="btn btn-default" onClick="location.href={% url 'search'%}">Search</button>
+</form> 
 </div>
+     </div>
+</div>
+<div class="container">
+<br>
+<hr>
 
-<div>
-    {% for item in context %}
-    <div class="row">
-  <div class="column" style="background-color:#aaa;">
-	<a href=/restview/{{item.res_id}} style="font-size:40px">{{ item.name	}}</a>
-	<p>Cuisines: {{ item.cuisines		}}</p>
-	<p>Rating: {{ item.rating		}}</p>
-    <p>Average cost for two: {{ item.price		}}</p>
-	<a href={{ item.url		}}>Open in Zomato</a>
-	<img src={{ item.icon		}} style="width:50px;height:60px;">
-	</div>
-  </div>
-  </div>
-    {% endfor %}
-	</div>
-{% endblock %}
+
+
+<div class="card">
+<table class="table table-hover shopping-cart-wrap">
+<thead class="text-muted">
+<tr>
+  <th scope="col">Product</th>
+  <th scope="col" width="120">Rating</th>
+  <th scope="col" width="120">Average Cost</th>
+  <th scope="col" width="200" class="text-right">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>
+<figure class="media">
+	<div class="img-wrap"><img src="http://bootstrap-ecommerce.com/main/images/items/2.jpg" width="90" height="75"></div>
+	<figcaption class="media-body">
+		<dl class="param param-inline small">
+		  <dt>Product name goes here </dt>
+		  <dd>Cuisines: </dd>
+		</dl>
+	</figcaption>
+</figure> 
+	</td>
+	<td> 
+		<div> 
+			<output>4</output> 
+		</div>	
+	</td>
+	<td> 
+		<div class="price-wrap"> 
+			<var class="price">145</var> 
+			<small class="text-muted"> Rs (for 2 people)</small> 
+		</div> <!-- price-wrap .// -->
+	</td>
+	<td class="text-right"> 
+	<a title="" href="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist"> <i class="fa fa-heart"></i></a> 
+	<a href="" class="btn btn-outline-danger"> View</a>
+	</td>
+</tr>
+</tbody>
+</table>
+</div> <!-- card.// -->
+	
+</div> 
+<!--container end.//-->
+
+<br><br>
+<!-- Page Content -->
+    <!-- /.container -->
+  </body>
+  </html>
