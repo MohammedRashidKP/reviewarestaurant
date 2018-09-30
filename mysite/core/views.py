@@ -84,8 +84,13 @@ def showRestaurantDetails(request, value):
 	menu=restDetails['menu_url']
 	details = [dict() for x in range(12)]
 	request.session[0]=value
+	all_enties = RestaurantReview.objects.all().filter(restaurantId=value)
+	reviewList = []
+	for p in all_enties:
+		reviewList.append(p.review)
 	details={'id':id,'name':name, 'url':url, 'address':address, 'cuisines':cuisines, 'cuisines':cuisines, 'average_cost_for_two':average_cost_for_two, 'thumbnail':thumbnail, 'rating':rating, 'popular_opinion':popular_opinion,'votes':votes,'photos':photos,'menu':menu}
-	return render(request, 'restaurantview.html', {'restdetails':details})
+	
+	return render(request, 'restaurantview.html', {'restdetails':details, 'reviewsAndRatings':reviewList})
 	
 @login_required
 def submit(request):

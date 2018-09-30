@@ -16,7 +16,7 @@ certifi = "*"
 chardet = "*"
 idna = "*"
 urllib3 = "*"
-
+	
 [dev-packages]
 
 [requires]
