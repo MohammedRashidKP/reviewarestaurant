@@ -35,7 +35,6 @@ def signup(request):
 def search(request):
 	p = Pyzomato('ca5cbda00917434b4886bcf7fcc01b97')
 	list = []
-	print('Search url working')
 	try:
 		searchCategory = request.GET.get('searchCategory','')
 		searchKeyWord = request.GET.get('searchKeyWord','')
@@ -47,7 +46,6 @@ def search(request):
 				if cuisine['cuisine']['cuisine_name'] == searchKeyWord:
 					cuisine_id = cuisine['cuisine']['cuisine_id']
 			response = p.search(entity_type="city", entity_id='4',cuisines=cuisine_id)
-			print(response)
 		if searchCategory == 'restaurantType':
 			restaurantTypeValue = ''
 			restaurantTypeResponse = p.getEstablishments(city_id = '4')
@@ -61,7 +59,6 @@ def search(request):
 			for num, category in enumerate(category_response['categories']):
 				if category['categories']['name'] == searchKeyWord:
 					category_id = category['categories']['id']
-					print(	)
 			response = p.search(entity_type="city", entity_id='4', category=category_id)
 	except Exception as e:
 		print(e)
@@ -88,6 +85,7 @@ def search(request):
 def showRestaurantDetails(request, value):
 	p = Pyzomato('ca5cbda00917434b4886bcf7fcc01b97')
 	restDetails = p.getRestaurantDetails(value)
+	print(restDetails)
 	id = value
 	name=restDetails["name"]
 	url=restDetails["url"]
@@ -100,8 +98,10 @@ def showRestaurantDetails(request, value):
 	votes=restDetails['user_rating']['votes']
 	photos=restDetails['photos_url']
 	menu=restDetails['menu_url']
+	featured_image=restDetails['featured_image']
 	details = [dict() for x in range(12)]
-	details = {'id':id, 'name':name, 'name':name, 'address':address, 'average_cost_for_two':average_cost_for_two, 'thumbnail':thumbnail, 'rating':rating, 'popular_opinion':popular_opinion, 'photos':photos, 'menu':menu }
+	details = {'id':id, 'name':name, 'name':name, 'address':address, 'average_cost_for_two':average_cost_for_two,'featured_image':featured_image, 
+	'thumbnail':thumbnail, 'rating':rating, 'popular_opinion':popular_opinion, 'photos':photos, 'menu':menu,'cuisines': cuisines}
 	request.session[0]=value
 	request.session[1]=details
 	all_enties = RestaurantReview.objects.all().filter(restaurantId=value)
@@ -117,10 +117,11 @@ def showRestaurantDetails(request, value):
 	
 @login_required
 def submit(request):
+	print('Submit click is working')
 	error = ''
 	details=request.session['1']
 	reviewList=''
-	review = request.GET.get('review')
+	review = '4'
 	rating = request.GET.get('rating')
 	user = request.user
 	id= request.session['0']

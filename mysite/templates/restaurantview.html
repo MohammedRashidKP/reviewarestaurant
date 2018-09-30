@@ -1,255 +1,442 @@
-<!------ Include the above in your HEAD tag ---------->
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Review A Restaurant</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <title>Fixed Top Navbar Example for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/navbar-fixed-top.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	<style>
-
-html, body {
-  margin: 10px;
-  font-family: 'Roboto', sans-serif;
-}
-.btn-grey{
-    background-color:#D8D8D8;
-	color:#FFF;
-}
-.rating-block{
-	background-color:#FAFAFA;
-	border:1px solid #EFEFEF;
-	padding:15px 15px 20px 15px;
-	border-radius:3px;
-}
-.bold{
-	font-weight:700;
-}
-.padding-bottom-7{
-	padding-bottom:7px;
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    	
+body{
+    margin-top:20px;
+    background:#eee;
 }
 
-.review-block{
-	background-color:#FAFAFA;
-	border:1px solid #EFEFEF;
-	padding:15px;
-	border-radius:3px;
-	margin-bottom:15px;
-}
-.review-block-name{
-	font-size:12px;
-	margin:10px 0;
-}
-.review-block-date{
-	font-size:12px;
-}
-.review-block-rate{
-	font-size:13px;
-	margin-bottom:15px;
-}
-.review-block-title{
-	font-size:15px;
-	font-weight:700;
-	margin-bottom:10px;
-}
-.review-block-description{
-	font-size:13px;
-}
-.container1 {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 15px;
-  display: flex;
-} 
-  .rating {
-    float:left;
-}
-.rating:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
-    clip:rect(0,0,0,0);
+
+.product-content {
+    border: 1px solid #dfe5e9;
+    margin-bottom: 20px;
+    margin-top: 12px;
+    background: #fff
 }
 
-.rating:not(:checked) > label {
-    float:right;
-    width:1em;
-    padding:0 .1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:200%;
-    line-height:1.2;
-    color:#ddd;
-    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+.product-content .carousel-control.left {
+    margin-left: 0
 }
 
-.rating:not(:checked) > label:before {
-    content: '★ ';
+.product-content .product-image {
+    background-color: #fff;
+    display: block;
+    min-height: 238px;
+    overflow: hidden;
+    position: relative
 }
 
-.rating > input:checked ~ label {
-    color: #f70;
-    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+.product-content .product-deatil {
+    border-bottom: 1px solid #dfe5e9;
+    padding-bottom: 17px;
+    padding-left: 16px;
+    padding-top: 16px;
+    position: relative;
+    background: #fff
 }
 
-.rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label {
-    color: gold;
-    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+.product-content .product-deatil h5 a {
+    color: #2f383d;
+    font-size: 15px;
+    line-height: 19px;
+    text-decoration: none;
+    padding-left: 0;
+    margin-left: 0
 }
 
-.rating > input:checked + label:hover,
-.rating > input:checked + label:hover ~ label,
-.rating > input:checked ~ label:hover,
-.rating > input:checked ~ label:hover ~ label,
-.rating > label:hover ~ input:checked ~ label {
-    color: #ea0;
-    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+.product-content .product-deatil h5 a span {
+    color: #9aa7af;
+    display: block;
+    font-size: 13px
 }
 
-.rating > label:active {
-    position:relative;
-    top:2px;
-    left:2px;
+.product-content .product-deatil span.tag1 {
+    border-radius: 50%;
+    color: #fff;
+    font-size: 15px;
+    height: 50px;
+    padding: 13px 0;
+    position: absolute;
+    right: 10px;
+    text-align: center;
+    top: 10px;
+    width: 50px
 }
-	</style>
-  </head>
 
-  <body>
-  <div class="upperbody">
-<main class="container1">
- 
-  <!-- Left Column / Headphones Image -->
-  <div class="left-column">
-    <img data-image="red" class="active" src={{restdetails.thumbnail}} alt="">
-  </div>
- 
-  <!-- Right Column -->
-  <div class="right-column">
- 
-    <!-- Product Description -->
-    <div class="product-description">
-      <h1>     {{restdetails.name}}</h1>
-	  <div class="review-block-title">{{restdetails.address}}</div>
-	  <div class="review-block-title">{{restdetails.cuisines}}</div>
-	  <div class="review-block-title">Average cost for two: {{restdetails.average_cost_for_two}}</div>  
-	  <div class="review-block-title">Zomato Rating: {{restdetails.rating}}</div>
-	  <div class="review-block-title">Zomato Popular Opinion: {{restdetails.popular_opinion}}</div>
-	  <a href = {{restdetails.photos}}>Photos</a>
-	  <a href = {{restdetails.menu}}>Menu</a>
-    </div>
-  </div>
-</main>
-</div>
-<form action = "{% url 'submit'%}">
-  </br>
-  <div style="margin-left:65px">	
-    <textarea rows="4" cols="50" name="review" placeholder="What do you think about us..."></textarea>
-  </br>	
-  <fieldset class="rating" name="rating">
-    <legend>Please rate:</legend>
-    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
-    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
-    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
-    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
-    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
-</fieldset>
-<p style="color: red">{{ error }}</p>
-</div>
-<button type="submit" onClick="location.href={% url 'submit'%}">Submit</button>
-</form>
-</br>
-</br>
-</br>
-</br>
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-      </div>
-    </nav>
+.product-content .product-deatil span.sale {
+    background-color: #21c2f8
+}
 
-    <div class="container">	
-	{% for reviewElement in reviewsAndRatings %}	
-		<div class="row">
-			<div class="col-sm-7">
-				<hr/>
-				<div class="review-block">
-					<div class="row">
-						<div class="col-sm-3">
-							<img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-							<div class="review-block-name"><a href="#">{{reviewElement.userName}}</a></div>
-						</div>
-						<div class="col-sm-9">
-							<div class="review-block-rate">
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
+.product-content .product-deatil span.discount {
+    background-color: #71e134
+}
+
+.product-content .product-deatil span.hot {
+    background-color: #fa9442
+}
+
+.product-content .description {
+    font-size: 12.5px;
+    line-height: 20px;
+    padding: 10px 14px 16px 19px;
+    background: #fff
+}
+
+.product-content .product-info {
+    padding: 11px 19px 10px 20px
+}
+
+.product-content .product-info a.add-to-cart {
+    color: #2f383d;
+    font-size: 13px;
+    padding-left: 16px
+}
+
+.product-content name.a {
+    padding: 5px 10px;
+    margin-left: 16px
+}
+
+.product-info.smart-form .btn {
+    padding: 6px 12px;
+    margin-left: 12px;
+    margin-top: -10px
+}
+
+.product-entry .product-deatil {
+    border-bottom: 1px solid #dfe5e9;
+    padding-bottom: 17px;
+    padding-left: 16px;
+    padding-top: 16px;
+    position: relative
+}
+
+.product-entry .product-deatil h5 a {
+    color: #2f383d;
+    font-size: 15px;
+    line-height: 19px;
+    text-decoration: none
+}
+
+.product-entry .product-deatil h5 a span {
+    color: #9aa7af;
+    display: block;
+    font-size: 13px
+}
+
+.load-more-btn {
+    background-color: #21c2f8;
+    border-bottom: 2px solid #037ca5;
+    border-radius: 2px;
+    border-top: 2px solid #0cf;
+    margin-top: 20px;
+    padding: 9px 0;
+    width: 100%
+}
+
+.product-block .product-deatil p.price-container span,
+.product-content .product-deatil p.price-container span,
+.product-entry .product-deatil p.price-container span,
+.shipping table tbody tr td p.price-container span,
+.shopping-items table tbody tr td p.price-container span {
+    color: #21c2f8;
+    font-family: Lato, sans-serif;
+    font-size: 24px;
+    line-height: 20px
+}
+
+.product-info.smart-form .rating label {
+    margin-top: 0
+}
+
+.product-wrap .product-image span.tag2 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 11px;
+    text-align: center
+}
+
+.product-wrap .product-image span.sale {
+    background-color: #57889c
+}
+
+.product-wrap .product-image span.hot {
+    background-color: #a90329
+}
+
+.shop-btn {
+    position: relative
+}
+
+.shop-btn>span {
+    background: #a90329;
+    display: inline-block;
+    font-size: 10px;
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
+    font-weight: 700;
+    border-radius: 50%;
+    padding: 2px 4px 3px!important;
+    text-align: center;
+    line-height: normal;
+    width: 19px;
+    top: -7px;
+    left: -7px
+}
+
+.description-tabs {
+    padding: 30px 0 5px!important
+}
+
+.description-tabs .tab-content {
+    padding: 10px 0
+}
+
+.product-deatil {
+    padding: 30px 30px 50px
+}
+
+.product-deatil hr+.description-tabs {
+    padding: 0 0 5px!important
+}
+
+.product-deatil .carousel-control.left,
+.product-deatil .carousel-control.right {
+    background: none!important
+}
+
+.product-deatil .glyphicon {
+    color: #3276b1
+}
+
+.product-deatil .product-image {
+    border-right: none!important
+}
+
+.product-deatil .name {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.product-deatil .name small {
+    display: block
+}
+
+.product-deatil .name a {
+    margin-left: 0
+}
+
+.product-deatil .price-container {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 300
+}
+
+.product-deatil .price-container small {
+    font-size: 12px
+}
+
+.product-deatil .fa-2x {
+    font-size: 16px!important
+}
+
+.product-deatil .fa-2x>h5 {
+    font-size: 12px;
+    margin: 0
+}
+
+.product-deatil .fa-2x+a,
+.product-deatil .fa-2x+a+a {
+    font-size: 13px
+}
+
+.profile-message ul {
+  list-style: none ;  
+}
+
+.product-deatil .certified {
+    margin-top: 10px
+}
+
+.product-deatil .certified ul {
+    padding-left: 0
+}
+
+.product-deatil .certified ul li:not(first-child) {
+    margin-left: -3px
+}
+
+.product-deatil .certified ul li {
+    display: inline-block;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 13px 19px
+}
+
+.product-deatil .certified ul li:first-child {
+    border-right: none
+}
+
+.product-deatil .certified ul li a {
+    text-align: left;
+    font-size: 12px;
+    color: #6d7a83;
+    line-height: 16px;
+    text-decoration: none
+}
+
+.product-deatil .certified ul li a span {
+    display: block;
+    color: #21c2f8;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center
+}
+
+.product-deatil .message-text {
+    width: calc(100% - 70px)
+}
+
+@media only screen and (min-width:1024px) {
+    .product-content div[class*=col-md-4] {
+        padding-right: 0
+    }
+    .product-content div[class*=col-md-8] {
+        padding: 0 13px 0 0
+    }
+    .product-wrap div[class*=col-md-5] {
+        padding-right: 0
+    }
+    .product-wrap div[class*=col-md-7] {
+        padding: 0 13px 0 0
+    }
+    .product-content .product-image {
+        border-right: 1px solid #dfe5e9
+    }
+    .product-content .product-info {
+        position: relative
+    }
+}
+
+.message img.online {
+    width:40px;
+    height:40px;
+}
+    </style>
+</head>
+<body>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="col-sm-12 col-md-12 col-lg-12">
+    		<!-- product -->
+			<div class="product-content product-wrap clearfix product-deatil">
+				<div class="row">
+						<div class="col-md-5 col-sm-12 col-xs-12 ">
+							<div class="product-image"> 
+								<div id="myCarousel-2" class="carousel slide">
+								<ol class="carousel-indicators">
+									<li data-target="#myCarousel-2" data-slide-to="1" class="active"></li>
+								</ol>
+								<div class="carousel-inner">
+									<!-- Slide 1 -->
+									<div class="item active">
+										<img src={{restdetails.thumbnail}} style="width:500px;height:300px;" alt="">
+									</div>
+								</div>
+								</div>
 							</div>
-							<div class="review-block-title">{{ reviewElement.review}}</div>
 						</div>
+						<div class="col-md-7 col-sm-12 col-xs-12">
+					
+						<h2 class="name">
+							{{restdetails.name}}
+							<small>{{restdetails.cuisines}}</small>
+							<i class="fa fa-star fa-2x text-primary"></i>
+							<i class="fa fa-star fa-2x text-primary"></i>
+							<i class="fa fa-star fa-2x text-primary"></i>
+							<i class="fa fa-star fa-2x text-primary"></i>
+							<i class="fa fa-star fa-2x text-muted"></i>
+							<span class="fa fa-2x"><h5>(109) Votes</h5></span>	
+							<a href="javascript:void(0);">109 customer reviews</a>
+						</h2>
+						<hr>
+						<h3 class="price-container">
+							Average cost for two: {{restdetails.average_cost_for_two}}</
+							<small> *includes tax</small>
+						</h3>
+						<div class="certified">
+							<ul>
+								<li><a href={{restdetails.menu}}><span>Menu</span></a></li>
+								<li><a href={{restdetails.photos}}><span>Photos</span></a></li>
+							</ul>
+						</div>
+						<hr>
+						<div class="description description-tabs">
+							<ul id="myTab" class="nav nav-pills">
+								<li class="active"><a href="#more-information" data-toggle="tab" class="no-margin">Address</a></li>
+								<li class=""><a href="#reviews" data-toggle="tab">Reviews</a></li>
+							</ul>
+							<div id="myTabContent" class="tab-content">
+								<div class="tab-pane fade active in" id="more-information">
+									<br>
+									<strong>{{restdetails.address}}</strong>
+								</div>
+								<div class="tab-pane fade" id="reviews">
+									<br>
+									<form method = "POST" class="well padding-bottom-10" action = "{% url 'submit'%}">
+										<textarea rows="2" class="form-control" placeholder="Write a review" name="review"> </textarea>
+										<div class="margin-top-10">
+											<button type="submit" class="btn btn-sm btn-primary pull-right" onClick="location.href={% url 'submit'%}">
+												Submit Review
+											</button>
+										</div>
+									</form>
+									<div class="chat-body no-padding profile-message">
+									{% for reviewElement in reviewsAndRatings %}	
+										<ul>
+											<li class="message">
+												<img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="online">
+												<span class="message-text"> 
+													<a href="javascript:void(0);" class="username">
+														{{reviewElement.userName}} 
+														<span class="pull-right">
+															<i class="fa fa-star fa-2x text-primary"></i>
+															<i class="fa fa-star fa-2x text-primary"></i>
+															<i class="fa fa-star fa-2x text-primary"></i>
+															<i class="fa fa-star fa-2x text-primary"></i>
+															<i class="fa fa-star fa-2x text-muted"></i>
+														</span>
+													</a> 
+													{{ reviewElement.review}}
+												</span>
+											</li>
+										</ul>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr>
 					</div>
-					<hr/>
 				</div>
 			</div>
+			<!-- end product -->
 		</div>
-	{% endfor %}	
-    </div> <!-- /container -->
 
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
-  </body>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	
+</script>
+</body>
 </html>
