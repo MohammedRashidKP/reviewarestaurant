@@ -40,11 +40,13 @@ def search(request):
 		searchKeyWord = request.GET.get('searchKeyWord','')
 		response=''
 		if searchCategory == 'cuisines':
+			cusineResponse = p.getCuisines(city_id = '4')
+			print('cusineResponse')
 			response = p.search(entity_type="city", entity_id='4')
 		if searchCategory == 'restaurantType':
-			response = p.search()
+			response = p.search(entity_type="city", entity_id='4')
 		if searchCategory == 'restaurantCategory':
-			response = p.search()
+			response = p.search(entity_type="city", entity_id='4')
 	except Exception as e:
 		print(e)
 	try:
