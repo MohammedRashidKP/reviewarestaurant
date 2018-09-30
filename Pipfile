@@ -16,7 +16,7 @@ certifi = "*"
 chardet = "*"
 idna = "*"
 urllib3 = "*"
-	
+whitenoise= "*"
 [dev-packages]
 
 [requires]
