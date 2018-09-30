@@ -59,6 +59,7 @@ def search(request):
 			for num, category in enumerate(category_response['categories']):
 				if category['categories']['name'] == searchKeyWord:
 					category_id = category['categories']['id']
+					print(category_id)
 			response = p.search(entity_type="city", entity_id='4', category=category_id)
 	except Exception as e:
 		print(e)
