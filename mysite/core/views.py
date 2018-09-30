@@ -48,7 +48,6 @@ def search(request):
 	except Exception as e:
 		print(e)
 	try:
-		RestaurantReview.objects.all().delete()
 		for num, restaurant in enumerate(response['restaurants']):
 			number= num+1,
 			name=restaurant['restaurant']['name']
@@ -71,6 +70,7 @@ def search(request):
 def showRestaurantDetails(request, value):
 	p = Pyzomato('ca5cbda00917434b4886bcf7fcc01b97')
 	restDetails = p.getRestaurantDetails(value)
+	print(restDetails)
 	id = value
 	name=restDetails["name"]
 	url=restDetails["url"]
