@@ -40,7 +40,7 @@ def search(request):
 		searchKeyWord = request.GET.get('searchKeyWord','')
 		response=''
 		if searchCategory == 'cuisines':
-			response = p.search()
+			response = p.search(entity_type="city", entity_id='4')
 		if searchCategory == 'restaurantType':
 			response = p.search()
 		if searchCategory == 'restaurantCategory':
