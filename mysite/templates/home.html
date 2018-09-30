@@ -285,41 +285,50 @@ var {
 <table class="table table-hover shopping-cart-wrap">
 <thead class="text-muted">
 <tr>
-  <th scope="col">Product</th>
+  <th scope="col">Restaurant Name</th>
   <th scope="col" width="120">Rating</th>
   <th scope="col" width="120">Average Cost</th>
   <th scope="col" width="200" class="text-right">Action</th>
 </tr>
 </thead>
 <tbody>
+{% for item in context %}
 <tr>
 	<td>
 <figure class="media">
-	<div class="img-wrap"><img src="http://bootstrap-ecommerce.com/main/images/items/2.jpg" width="90" height="75"></div>
+	<div class="img-wrap"><img src={{item.icon}} width="90" height="75"></div>
 	<figcaption class="media-body">
 		<dl class="param param-inline small">
-		  <dt>Product name goes here </dt>
-		  <dd>Cuisines: </dd>
+		  <dt>{{item.name}}</dt>
+		  <dd>Cuisines: {{item.cuisines}} </dd>
 		</dl>
 	</figcaption>
 </figure> 
 	</td>
 	<td> 
 		<div> 
-			<output>4</output> 
+			<output>{{item.rating}}</output> 
 		</div>	
 	</td>
 	<td> 
 		<div class="price-wrap"> 
-			<var class="price">145</var> 
+			<var class="price">{{item.price}}</var> 
 			<small class="text-muted"> Rs (for 2 people)</small> 
 		</div> <!-- price-wrap .// -->
 	</td>
-	<td class="text-right"> 
-	<a title="" href="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist"> <i class="fa fa-heart"></i></a> 
-	<a href="" class="btn btn-outline-danger"> View</a>
+	<td>
+	<div class="img-wrap">
+	<a href={{item.url}}>
+	<img src="https://seeklogo.com/images/Z/zomato-logo-200607EC4C-seeklogo.com.png" width="30" height="30">
+	</a>
+	</div>
+	</td>
+	<td class="text-right">
+	<!--a title="" href={{item.url}} class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Open in zomato"> <i class="fa fa-heart"--></i></a> 
+	<a href=/restview/{{item.res_id}} class="btn btn-outline-danger"> View</a>
 	</td>
 </tr>
+{% endfor %}
 </tbody>
 </table>
 </div> <!-- card.// -->

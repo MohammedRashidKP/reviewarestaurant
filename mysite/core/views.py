@@ -39,8 +39,6 @@ def search(request):
 	try:
 		searchCategory = request.GET.get('searchCategory','')
 		searchKeyWord = request.GET.get('searchKeyWord','')
-		print(searchCategory)
-		print(searchKeyWord)
 		response=''
 		if searchCategory == 'cuisines':
 			cuisine_id = ''
@@ -49,6 +47,7 @@ def search(request):
 				if cuisine['cuisine']['cuisine_name'] == searchKeyWord:
 					cuisine_id = cuisine['cuisine']['cuisine_id']
 			response = p.search(entity_type="city", entity_id='4',cuisines=cuisine_id)
+			print(response)
 		if searchCategory == 'restaurantType':
 			restaurantTypeValue = ''
 			restaurantTypeResponse = p.getEstablishments(city_id = '4')
