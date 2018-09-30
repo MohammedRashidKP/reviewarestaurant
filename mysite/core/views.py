@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from pyzomato import Pyzomato
 import json
 from .models import RestaurantReview
-
+import math
 
 @login_required
 def home(request):
@@ -100,7 +100,7 @@ def showRestaurantDetails(request, value):
 	featured_image=restDetails['featured_image']
 	details = [dict() for x in range(12)]
 	details = {'id':id, 'name':name, 'name':name, 'address':address, 'average_cost_for_two':average_cost_for_two,'featured_image':featured_image, 
-	'thumbnail':thumbnail, 'rating':rating, 'popular_opinion':popular_opinion, 'photos':photos, 'menu':menu,'cuisines': cuisines}
+	'thumbnail':thumbnail, 'rating':rating, 'popular_opinion':popular_opinion, 'photos':photos, 'menu':menu,'cuisines': cuisines,'votes':votes}
 	request.session[0]=value
 	request.session[1]=details
 	all_enties = RestaurantReview.objects.all().filter(restaurantId=value)
@@ -120,8 +120,8 @@ def submit(request):
 	error = ''
 	details=request.session['1']
 	reviewList=''
-	review = '4'
-	rating = request.GET.get('rating')
+	review = request.GET.get('review')
+	rating = '4'
 	user = request.user
 	id= request.session['0']
 	if not review:
