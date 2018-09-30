@@ -84,9 +84,12 @@ def showRestaurantDetails(request, value):
 	photos=restDetails['photos_url']
 	menu=restDetails['menu_url']
 	details = [dict() for x in range(12)]
+	details = {'id':id, 'name':name, 'name':name, 'address':address, 'average_cost_for_two':average_cost_for_two, 'thumbnail':thumbnail, 'rating':rating, 'popular_opinion':popular_opinion, 'photos':photos, 'menu':menu }
 	request.session[0]=value
-	request.session[1]=details
+	#request.session[1]=details
+	print("Before DB")
 	all_enties = RestaurantReview.objects.all().filter(restaurantId=value)
+	print("After DB")
 	reviewList = []
 	for p in all_enties:
 		reviewElement = [dict() for x in range(9)]
@@ -103,13 +106,13 @@ def submit(request):
 	rating = request.GET.get('rating')
 	user = request.user
 	id= request.session['0']
-	obj, created = RestaurantReview.objects.update_or_create(
-	user=user, restaurantId=id, review=review,rating=rating)
+	obj, created = RestaurantReview.objects.update_or_create(restaurantId=id, defaults={
+	user=user, restaurantId=id, review=review,rating=rating})
 	#r = RestaurantReview(user=user, restaurantId=id, review=review,rating=rating)
 	#r.save()
 	all_enties = RestaurantReview.objects.all().filter(restaurantId=id)
 	reviewList = []
-	details=request.session['1']
+	#details=request.session['1']
 	for p in all_enties:
 		reviewElement = [dict() for x in range(9)]
 		review = p.review
@@ -117,4 +120,4 @@ def submit(request):
 		userName = p.user
 		reviewElement={'review':review,'rating':rating, 'userName':userName}
 		reviewList.append(reviewElement)
-	return render(request, 'restaurantview.html', {'restdetails':details,'reviewsAndRatings':reviewList})
+	return render(request, 'restaurantview.html', {'reviewsAndRatings':reviewList})
