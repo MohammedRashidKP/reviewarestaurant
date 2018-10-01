@@ -33,6 +33,7 @@ def signup(request):
 @login_required
 def search(request):
 	p = Pyzomato('ca5cbda00917434b4886bcf7fcc01b97')
+	Reporter.objects.all().delete()
 	list = []
 	try:
 		searchCategory = request.GET.get('searchCategory','')
@@ -110,13 +111,7 @@ def showRestaurantDetails(request, value):
 		userName = p.user
 		reviewElement={'review':review,'rating':rating, 'userName':userName}
 		reviewList.append(reviewElement)
-	ratingList = []
-	for i in range(rating):
-		ratingList.append("fa fa-star fa-2x text-primary")
-	for i in range(5-rating):
-		ratingList.append("fa fa-star fa-2x text-muted")
-	print(ratingList)
-	return render(request, 'restaurantview.html', {'restdetails':details, 'reviewsAndRatings':reviewList, 'ratingList':ratingList})
+	return render(request, 'restaurantview.html', {'restdetails':details, 'reviewsAndRatings':reviewList})
 	
 @login_required
 def submit(request):
@@ -143,9 +138,4 @@ def submit(request):
 		userName = p.user
 		reviewElement={'review':review,'rating':rating, 'userName':userName}
 		reviewList.append(reviewElement)
-	ratingList = []
-	for i in range(rating):
-		ratingList.append("fa fa-star fa-2x text-primary")
-	for i in range(5-rating):
-		ratingList.append("fa fa-star fa-2x text-muted")
-	return render(request, 'restaurantview.html', {'error':error, 'restdetails':details,'reviewsAndRatings':reviewList, 'ratingList':ratingList})
+	return render(request, 'restaurantview.html', {'error':error, 'restdetails':details,'reviewsAndRatings':reviewList})

@@ -7,7 +7,8 @@
     <title>review-A-restaurant</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -438,6 +439,15 @@ body{
     top:2px;
     left:2px;
 }
+.ratingDisplay {
+	content: '★ ';
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+	position:relative;
+    top:2px;
+    left:2px;
+}
+
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #ecf0f1;
@@ -461,7 +471,8 @@ body{
     </style>
 </head>
 <body>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -473,7 +484,6 @@ body{
         <span class="icon-bar"></span>
       </button>
 	  <a class="navbar-brand" href="#">review-A-restaurant</a>
-	  <a class="navbar-brand" href="{% url 'home'%}">Home</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -543,11 +553,11 @@ body{
 									<form action = "{% url 'submit'%}">
 								  <fieldset class="rating" name="rating">
 									<legend>Please rate:</legend>
-									<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
-									<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
-									<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
-									<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
-									<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+									<input type="radio" id="star5" name="rating" class="full" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+									<input type="radio" id="star4" name="rating" class="full" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+									<input type="radio" id="star3" name="rating" class="full" value="3" /><label for="star3" title="Meh">3 stars</label>
+									<input type="radio" id="star2" name="rating" class="full" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+									<input type="radio" id="star1" name="rating" class="full" value="1" /><label for="star1" title="Sucks big time">1 star</label>
 								</fieldset>
 										<textarea rows="2" class="form-control" placeholder="Write a review" name="review"></textarea>
 										<div class="margin-top-10">
@@ -567,18 +577,10 @@ body{
 													<a href="javascript:void(0);" class="username">
 														{{reviewElement.userName}}
 														<span class="pull-right" id ="startspan">
-														<div id ="stardiv">
-															<i id = "star1" class="fa fa-star fa-2x text-primary"></i>
-															<i id = "star2" class="fa fa-star fa-2x text-primary"></i>
-															<i id = "star3" class="fa fa-star fa-2x text-primary"></i>
-															<i id = "star4" class="fa fa-star fa-2x text-primary"></i>
-															<i id = "star5" class="fa fa-star fa-2x text-primary"></i>
-														</div>
+														{{reviewElement.rating}}
+															<i class="fa fa-star fa-2x text-primary"></i>
+														</fieldset>
 														</span>
-														<script>
-															var star1 = document.getElementById('star3');
-															 star1.className= 'fa fa-star fa-2x text-muted';
-														</script
 													</a> 
 													{{ reviewElement.review}}
 												</span>
