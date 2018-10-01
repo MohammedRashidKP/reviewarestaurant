@@ -33,7 +33,7 @@ def signup(request):
 @login_required
 def search(request):
 	p = Pyzomato('ca5cbda00917434b4886bcf7fcc01b97')
-	Reporter.objects.all().delete()
+	RestaurantReview.objects.all().delete()
 	list = []
 	try:
 		searchCategory = request.GET.get('searchCategory','')
