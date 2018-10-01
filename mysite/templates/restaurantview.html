@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style type="text/css">
     	
 body{
@@ -384,7 +387,57 @@ body{
 .navbar-default .navbar-link:hover {
   color: #ffffff;
 }
+  .rating {
+    float:left;
+}
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
 
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > label:active {
+    position:relative;
+    top:2px;
+    left:2px;
+}
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #ecf0f1;
@@ -488,6 +541,14 @@ body{
 								<div class="tab-pane fade active in" id="reviews">
 									<br>
 									<form action = "{% url 'submit'%}">
+								  <fieldset class="rating" name="rating">
+									<legend>Please rate:</legend>
+									<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+									<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+									<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+									<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+									<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+								</fieldset>
 										<textarea rows="2" class="form-control" placeholder="Write a review" name="review"></textarea>
 										<div class="margin-top-10">
 											<button type="submit" class="btn btn-sm btn-primary pull-right" onClick="location.href={% url 'submit'%}">
@@ -505,13 +566,19 @@ body{
 												<span class="message-text"> 
 													<a href="javascript:void(0);" class="username">
 														{{reviewElement.userName}}
-														<span class="pull-right">
-															<i class="fa fa-star fa-2x text-primary"></i>
-															<i class="fa fa-star fa-2x text-primary"></i>
-															<i class="fa fa-star fa-2x text-primary"></i>
-															<i class="fa fa-star fa-2x text-primary"></i>
-															<i class="fa fa-star fa-2x text-muted"></i>
+														<span class="pull-right" id ="startspan">
+														<div id ="stardiv">
+															<i id = "star1" class="fa fa-star fa-2x text-primary"></i>
+															<i id = "star2" class="fa fa-star fa-2x text-primary"></i>
+															<i id = "star3" class="fa fa-star fa-2x text-primary"></i>
+															<i id = "star4" class="fa fa-star fa-2x text-primary"></i>
+															<i id = "star5" class="fa fa-star fa-2x text-primary"></i>
+														</div>
 														</span>
+														<script>
+															var star1 = document.getElementById('star3');
+															 star1.className= 'fa fa-star fa-2x text-muted';
+														</script
 													</a> 
 													{{ reviewElement.review}}
 												</span>

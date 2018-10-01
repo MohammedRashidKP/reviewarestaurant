@@ -77,7 +77,6 @@ def search(request):
 			list.append(dictlist)
 	except Exception as e:
 		print(e)
-		print('failed in for loop')
 	return render(request, 'home.html', {'context': list})
 	
 @login_required
@@ -111,16 +110,22 @@ def showRestaurantDetails(request, value):
 		userName = p.user
 		reviewElement={'review':review,'rating':rating, 'userName':userName}
 		reviewList.append(reviewElement)
-	return render(request, 'restaurantview.html', {'restdetails':details, 'reviewsAndRatings':reviewList})
+	ratingList = []
+	for i in range(rating):
+		ratingList.append("fa fa-star fa-2x text-primary")
+	for i in range(5-rating):
+		ratingList.append("fa fa-star fa-2x text-muted")
+	print(ratingList)
+	return render(request, 'restaurantview.html', {'restdetails':details, 'reviewsAndRatings':reviewList, 'ratingList':ratingList})
 	
 @login_required
 def submit(request):
-	print('Submit click is working')
 	error = ''
 	details=request.session['1']
 	reviewList=''
 	review = request.GET.get('review')
-	rating = '4'
+	rating = request.GET.get('rating')
+	print(rating)
 	user = request.user
 	id= request.session['0']
 	if not review:
@@ -138,4 +143,9 @@ def submit(request):
 		userName = p.user
 		reviewElement={'review':review,'rating':rating, 'userName':userName}
 		reviewList.append(reviewElement)
-	return render(request, 'restaurantview.html', {'error':error, 'restdetails':details,'reviewsAndRatings':reviewList})
+	ratingList = []
+	for i in range(rating):
+		ratingList.append("fa fa-star fa-2x text-primary")
+	for i in range(5-rating):
+		ratingList.append("fa fa-star fa-2x text-muted")
+	return render(request, 'restaurantview.html', {'error':error, 'restdetails':details,'reviewsAndRatings':reviewList, 'ratingList':ratingList})
