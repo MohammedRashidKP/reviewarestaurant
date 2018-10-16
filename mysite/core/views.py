@@ -32,7 +32,7 @@ def signup(request):
 	
 @login_required
 def search(request):
-	p = Pyzomato('ca5cbda00917434b4886bcf7fcc01b97')
+	p = Pyzomato('')
 	list = []
 	try:
 		searchCategory = request.GET.get('searchCategory','')
